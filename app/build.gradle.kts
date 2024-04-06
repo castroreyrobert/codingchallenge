@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
+    id ("com.google.dagger.hilt.android")
 }
 
 android {
@@ -46,12 +47,41 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
 
+    //RETROFIT and OKHTTP
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
 
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
-    /*def hilt_viewModel_version = '1.0.0-alpha03'
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewModel_version"
-    kapt "androidx.hilt:hilt-compiler:$hilt_viewModel_version"*/
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
+    //LIFECYCLE
+    val lifecycleVersion = "2.7.0"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
+    //KOTLIN EXTENSION
+    val activityVersion = "1.8.2"
+    implementation ("androidx.activity:activity-ktx:$activityVersion")
+
+    val fragmentVersion = "1.6.2"
+    implementation ("androidx.fragment:fragment-ktx:$fragmentVersion")
+
+    //NAVIGATION COMPONENT
+    val navVersion = "2.7.7"
+    implementation ("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation ("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    //ROOM DATABASE
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-paging:$roomVersion")
+    annotationProcessor ("androidx.room:room-compiler:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+
 }

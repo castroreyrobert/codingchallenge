@@ -2,6 +2,7 @@ package com.example.codingchallenge.data.levels
 
 import android.content.Context
 import com.example.codingchallenge.data.domain.model.NetworkData
+import com.example.codingchallenge.data.domain.model.levels.LevelActivityDatabaseModel
 import com.example.codingchallenge.data.domain.model.levels.LevelDatabaseModel
 import com.example.codingchallenge.data.domain.model.levels.LevelsResponse
 import com.google.gson.Gson
@@ -12,7 +13,8 @@ import java.io.IOException
 import javax.inject.Inject
 
 class LevelLocalRepository @Inject constructor(
-    private val database: LevelDatabase,
+    private val databaseLevel: LevelDatabase,
+    private val databaseActivityDatabase: LevelActivityDatabase,
     private val context: Context
 ): LevelsRepository {
 
@@ -28,7 +30,6 @@ class LevelLocalRepository @Inject constructor(
     }
 
     override suspend fun getLevelsFromAsset(): LevelsResponse? {
-        isCache = true
         return getLevelAssetJson()
     }
 
@@ -48,7 +49,11 @@ class LevelLocalRepository @Inject constructor(
         }
     }
 
-    override suspend fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>) {
-        database.levelsDao.insertLevelList(levelDatabaseList)
+    override fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>) {
+        databaseLevel.levelsDao.insertLevelList(levelDatabaseList)
+    }
+
+    override fun saveActivities(levelActivity: List<LevelActivityDatabaseModel>) {
+        databaseActivityDatabase.levelActivityDao.insertActivityList(levelActivity)
     }
 }

@@ -1,9 +1,10 @@
 package com.example.codingchallenge.data.levels
 
-import com.example.codingchallenge.data.domain.model.levels.LevelsResponse
 import com.example.codingchallenge.data.domain.model.NetworkData
-import com.example.codingchallenge.data.domain.model.levels.Level
+import com.example.codingchallenge.data.domain.model.levels.LevelActivity
+import com.example.codingchallenge.data.domain.model.levels.LevelActivityDatabaseModel
 import com.example.codingchallenge.data.domain.model.levels.LevelDatabaseModel
+import com.example.codingchallenge.data.domain.model.levels.LevelsResponse
 import com.haroldadmin.cnradapter.NetworkResponse
 
 interface LevelsRepository {
@@ -11,6 +12,8 @@ interface LevelsRepository {
 
     suspend fun getLevelsFromAsset(): LevelsResponse?
 
-    suspend fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>)
+    fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>)
+
+    fun saveActivities(levelActivity: List<LevelActivityDatabaseModel>)
 
 }

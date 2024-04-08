@@ -12,7 +12,7 @@ import com.example.codingchallenge.data.domain.model.levels.LevelDatabaseModel
 interface LevelActivityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLevelList(levelList: List<LevelActivityDatabaseModel>)
+    fun insertActivityList(levelList: List<LevelActivityDatabaseModel>)
 
     @Query("select * from levelActivity where level LIKE :level")
     fun getLevelActivityList(level: String): List<LevelActivityDatabaseModel>

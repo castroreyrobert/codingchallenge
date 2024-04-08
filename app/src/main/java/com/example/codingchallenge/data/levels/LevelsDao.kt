@@ -16,4 +16,6 @@ interface LevelsDao {
 
     @Query("select * from levels")
     fun getLevels(): List<LevelDatabaseModel>
+
+
 }

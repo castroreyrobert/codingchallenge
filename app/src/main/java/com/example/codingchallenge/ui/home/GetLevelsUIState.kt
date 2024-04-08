@@ -4,7 +4,7 @@ import com.example.codingchallenge.data.domain.model.levels.Level
 
 sealed interface GetLevelsUIState {
 
-    data class Success(val levels: List<Level>): GetLevelsUIState
+    data class Success(val levels: List<LevelUIModel>): GetLevelsUIState
 
     data class LoadFailed(val message: String): GetLevelsUIState
 

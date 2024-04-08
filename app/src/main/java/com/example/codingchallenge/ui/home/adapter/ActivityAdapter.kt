@@ -7,15 +7,16 @@ import com.bumptech.glide.Glide
 import com.example.codingchallenge.R
 import com.example.codingchallenge.data.domain.model.levels.LevelActivity
 import com.example.codingchallenge.databinding.ItemActivityBinding
+import com.example.codingchallenge.ui.home.LevelUIModel
 
-class ActivityAdapter(private val activities: List<LevelActivity>): RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
+class ActivityAdapter(private val activities: List<LevelUIModel.LevelActivityUIModel>): RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemActivityBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(levelActivity: LevelActivity) {
+        fun bind(levelActivity: LevelUIModel.LevelActivityUIModel) {
             binding.textViewActivityTitle.text = levelActivity.title
 
             Glide.with(binding.root.context)
-                .load(levelActivity.icon.file.url)
+                .load(levelActivity.icon)
                 .error(R.drawable.image_lesson)
                 .into(binding.imageViewActivity)
         }

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "levels")
 data class LevelDatabaseModel(
     val name: String = "",
+    val icon: String? = "",
 
     val description: String? = "",
     @PrimaryKey

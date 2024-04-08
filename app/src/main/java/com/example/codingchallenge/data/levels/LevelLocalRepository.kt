@@ -5,9 +5,12 @@ import com.example.codingchallenge.data.domain.model.NetworkData
 import com.example.codingchallenge.data.domain.model.levels.LevelActivityDatabaseModel
 import com.example.codingchallenge.data.domain.model.levels.LevelDatabaseModel
 import com.example.codingchallenge.data.domain.model.levels.LevelsResponse
+import com.example.codingchallenge.ui.home.LevelUIModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.haroldadmin.cnradapter.NetworkResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.json.JSONException
 import java.io.IOException
 import javax.inject.Inject
@@ -29,7 +32,7 @@ class LevelLocalRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getLevelsFromAsset(): LevelsResponse? {
+    suspend fun getLevelsFromAsset(): LevelsResponse? {
         return getLevelAssetJson()
     }
 
@@ -49,6 +52,10 @@ class LevelLocalRepository @Inject constructor(
         }
     }
 
+    override suspend fun getLevelList(): List<LevelUIModel> {
+        TODO("Not yet implemented")
+    }
+
     override fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>) {
         databaseLevel.levelsDao.insertLevelList(levelDatabaseList)
     }
@@ -56,4 +63,8 @@ class LevelLocalRepository @Inject constructor(
     override fun saveActivities(levelActivity: List<LevelActivityDatabaseModel>) {
         databaseActivityDatabase.levelActivityDao.insertActivityList(levelActivity)
     }
+
+    fun getLevelsFromDb() = databaseLevel.levelsDao.getLevels()
+
+    fun getLevelActivitiesFromDb(level: String) = databaseActivityDatabase.levelActivityDao.getLevelActivityList(level)
 }

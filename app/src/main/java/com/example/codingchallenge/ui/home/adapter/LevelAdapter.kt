@@ -6,18 +6,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.codingchallenge.data.domain.model.levels.Level
 import com.example.codingchallenge.databinding.ItemLevelBinding
+import com.example.codingchallenge.ui.home.LevelUIModel
 
-class LevelAdapter(private val levels: List<Level>): RecyclerView.Adapter<LevelAdapter.ViewHolder>() {
+class LevelAdapter(private val levels: List<LevelUIModel>): RecyclerView.Adapter<LevelAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemLevelBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(level: Level) {
+        fun bind(level: LevelUIModel) {
             binding.textViewLevelTitle.text = level.title
             binding.textViewLevelPosition.text = "Level ${level.level}"
             binding.textViewLevelDescription.text = level.description
             binding.recyclerViewActivities.apply {
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                adapter = ActivityAdapter(level.activities)
+                adapter = ActivityAdapter(level.activities.orEmpty())
             }
         }
     }

@@ -20,9 +20,9 @@ class HomeViewModel @Inject constructor(val repository: LevelsRepository): ViewM
         _levelsUIState.value = GetLevelsUIState.ShowProgress
         viewModelScope.launch {
             try {
-                val response = repository.getLevelsFromAsset()
-                if (response != null) {
-                    _levelsUIState.value = GetLevelsUIState.Success(response.levels)
+                val response = repository.getLevelList()
+                if (response.isNotEmpty()) {
+                    _levelsUIState.value = GetLevelsUIState.Success(response)
                 } else{
                     _levelsUIState.value = GetLevelsUIState.LoadFailed("Something went wrong!")
                 }

@@ -1,4 +1,4 @@
-package com.example.codingchallenge.data
+package com.example.codingchallenge.domain.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -11,7 +11,7 @@ data class LevelsResponse(
 
 data class Level(
     @SerializedName("activities")
-    val activities: List<Activity>,
+    val activities: List<LevelActivity>,
     @SerializedName("description")
     val description: String,
     @SerializedName("level")
@@ -22,7 +22,7 @@ data class Level(
     val title: String
 )
 
-data class Activity(
+data class LevelActivity(
     @SerializedName("challengeId")
     val challengeId: String,
     @SerializedName("description")
@@ -78,3 +78,4 @@ data class Details(
     @SerializedName("size")
     val size: Int
 )
+

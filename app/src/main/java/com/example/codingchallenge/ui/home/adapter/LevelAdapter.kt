@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.codingchallenge.domain.model.Level
+import com.example.codingchallenge.data.domain.model.levels.Level
 import com.example.codingchallenge.databinding.ItemLevelBinding
 
 class LevelAdapter(private val levels: List<Level>): RecyclerView.Adapter<LevelAdapter.ViewHolder>() {

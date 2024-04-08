@@ -1,36 +1,24 @@
 package com.example.codingchallenge.data.levels
 
-import android.content.Context
-import com.example.codingchallenge.data.api.LevelsApi
-import com.example.codingchallenge.domain.model.LevelsResponse
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import org.json.JSONException
-import java.io.IOException
+import com.example.codingchallenge.data.domain.model.levels.LevelDatabaseModel
+import com.example.codingchallenge.data.domain.model.levels.LevelsResponse
+import javax.inject.Inject
 
-class LevelsRepositoryImp(val context: Context, val api: LevelsApi) : LevelsRepository {
-    override suspend fun getLevels() = api.getLevels()
+class LevelsRepositoryImp @Inject constructor(
+    private val localRepo: LevelLocalRepository,
+    private val remoteRepository: LevelsRemoteRepository
+) : LevelsRepository {
+    override suspend fun getLevels() = remoteRepository.getLevels()
 
     override suspend fun getLevelsFromAsset(): LevelsResponse? {
         return try {
-            getLevelAssetJson()
+            localRepo.getLevelsFromAsset()
         } catch (exception: Exception) {
             null
         }
     }
 
-    private fun getLevelAssetJson(): LevelsResponse? {
-        return try {
-            val jsonString = context.assets.open("coding_challenge_response.json").bufferedReader().use { it.readText() }
-            val gson = Gson()
-            val type = object : TypeToken<LevelsResponse>() {}.type
-            gson.fromJson(jsonString, type)
-        } catch (e: IOException) {
-            e.printStackTrace()
-            null
-        } catch (e: JSONException) {
-            e.printStackTrace()
-            null
-        }
+    override suspend fun saveLevels(levelDatabaseList: List<LevelDatabaseModel>) {
+        TODO("Not yet implemented")
     }
 }

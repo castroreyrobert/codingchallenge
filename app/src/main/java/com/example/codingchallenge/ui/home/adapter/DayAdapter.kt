@@ -2,14 +2,10 @@ package com.example.codingchallenge.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.codingchallenge.R
-import com.example.codingchallenge.domain.model.Day
-import com.example.codingchallenge.domain.model.LevelActivity
-import com.example.codingchallenge.databinding.ItemActivityBinding
+import com.example.codingchallenge.data.domain.model.levels.Day
 import com.example.codingchallenge.databinding.ItemDayBinding
 
 class DayAdapter(

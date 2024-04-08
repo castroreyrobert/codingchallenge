@@ -1,12 +1,20 @@
 package com.example.codingchallenge.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.codingchallenge.BuildConfig
 import com.example.codingchallenge.data.api.LevelsApi
+import com.example.codingchallenge.data.levels.LevelActivityDatabase
+import com.example.codingchallenge.data.levels.LevelDatabase
+import com.example.codingchallenge.data.levels.LevelLocalRepository
+import com.example.codingchallenge.data.levels.getLevelActivityDatabase
+import com.example.codingchallenge.data.levels.getLevelDatabase
 import com.google.gson.GsonBuilder
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -80,4 +88,16 @@ class AppModule {
     @Singleton
     @Provides
     fun provideBankApi(retrofit: Retrofit): LevelsApi = retrofit.create(LevelsApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideLevelDatabase(@ApplicationContext context: Context): LevelDatabase =
+        getLevelDatabase(context)
+
+    @Singleton
+    @Provides
+    fun provideLevelActivityDatabase(@ApplicationContext context: Context): LevelActivityDatabase =
+        getLevelActivityDatabase(context)
+
+
 }

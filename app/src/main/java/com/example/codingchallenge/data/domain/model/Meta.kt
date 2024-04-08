@@ -1,4 +1,4 @@
-package com.example.codingchallenge.domain.model
+package com.example.codingchallenge.data.domain.model
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

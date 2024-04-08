@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.codingchallenge.R
-import com.example.codingchallenge.domain.model.LevelActivity
+import com.example.codingchallenge.data.domain.model.levels.LevelActivity
 import com.example.codingchallenge.databinding.ItemActivityBinding
 
 class ActivityAdapter(private val activities: List<LevelActivity>): RecyclerView.Adapter<ActivityAdapter.ViewHolder>() {

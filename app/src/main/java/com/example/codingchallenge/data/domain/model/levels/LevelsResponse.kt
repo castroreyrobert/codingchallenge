@@ -1,4 +1,4 @@
-package com.example.codingchallenge.domain.model
+package com.example.codingchallenge.data.domain.model.levels
 
 import com.google.gson.annotations.SerializedName
 
@@ -20,7 +20,16 @@ data class Level(
     val state: String,
     @SerializedName("title")
     val title: String
-)
+) {
+    companion object {
+        fun Level.toDb() =
+            LevelDatabaseModel(
+                name = title,
+                level = level,
+                description = description
+            )
+    }
+}
 
 data class LevelActivity(
     @SerializedName("challengeId")

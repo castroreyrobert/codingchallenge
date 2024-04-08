@@ -1,4 +1,4 @@
-package com.example.codingchallenge.domain.model
+package com.example.codingchallenge.data.domain.model.levels
 
 data class Day(
     var isSelected: Boolean = false,

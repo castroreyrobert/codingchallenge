@@ -2,6 +2,9 @@ package com.example.codingchallenge.di
 
 import android.content.Context
 import com.example.codingchallenge.data.api.LevelsApi
+import com.example.codingchallenge.data.levels.LevelDatabase
+import com.example.codingchallenge.data.levels.LevelLocalRepository
+import com.example.codingchallenge.data.levels.LevelsRemoteRepository
 import com.example.codingchallenge.data.levels.LevelsRepository
 import com.example.codingchallenge.data.levels.LevelsRepositoryImp
 import dagger.Module
@@ -17,6 +20,19 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideLevelsRepository(@ApplicationContext context: Context, api: LevelsApi): LevelsRepository =
-        LevelsRepositoryImp(context, api)
+    fun provideLevelsRepository(localRepository: LevelLocalRepository, remoteRepository: LevelsRemoteRepository): LevelsRepository =
+        LevelsRepositoryImp(localRepository, remoteRepository)
+
+
+    @Singleton
+    @Provides
+    fun provideLevelLocalRepository(@ApplicationContext context: Context, database: LevelDatabase) = LevelLocalRepository(
+        database, context
+    )
+
+    @Singleton
+    @Provides
+    fun provideLevelRemoteRepository(api: LevelsApi) = LevelsRemoteRepository(
+        api = api
+    )
 }

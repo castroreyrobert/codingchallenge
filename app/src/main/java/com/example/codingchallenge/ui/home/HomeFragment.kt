@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.codingchallenge.R
-import com.example.codingchallenge.domain.model.Day
+import com.example.codingchallenge.data.domain.model.levels.Day
 import com.example.codingchallenge.databinding.FragmentHomeBinding
-import com.example.codingchallenge.databinding.FragmentLoginBinding
 import com.example.codingchallenge.ui.home.adapter.DayAdapter
 import com.example.codingchallenge.ui.home.adapter.LevelAdapter
 import com.google.android.material.snackbar.Snackbar
